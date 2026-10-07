@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5. Ejemplos aplicados | Coeficiente de Spearman</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>2.1.2 Coeficiente de Spearman (ρ)</h1>
+      <p>5. Ejemplos aplicados</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <a href="index.html">Inicio</a>
+      <a href="01-introduccion.html">1. Introducción</a>
+      <a href="02-formula-y-calculo.html">2. Fórmula</a>
+      <a href="03-interpretacion.html">3. Interpretación</a>
+      <a href="04-propiedades.html">4. Propiedades</a>
+      <a href="05-ejemplos.html" class="active">5. Ejemplos</a>
+      <a href="ejercicios/ejercicios-manuales.html">Ejercicios</a>
+    </div>
+  </nav>
+
+  <main>
+    <h2>Ejemplo 1: Educación (variables ordinales)</h2>
+    <div class="card">
+      <p>
+        Se relaciona el <strong>nivel de satisfacción</strong> con el curso (escala 1–5) y el
+        <strong>ranking de esfuerzo percibido</strong> (1 = poco esfuerzo, 5 = mucho).
+      </p>
+      <ul>
+        <li>\( \rho = 0.61 \), \( p &lt; 0.001 \), \( n = 120 \)</li>
+      </ul>
+      <p>
+        <strong>Interpretación:</strong> asociación monótona positiva fuerte. A mayor esfuerzo percibido,
+        mayor satisfacción reportada. Spearman es adecuado porque ambas variables son ordinales.
+      </p>
+    </div>
+
+    <h2>Ejemplo 2: Salud (outliers)</h2>
+    <div class="card">
+      <p>
+        Relación entre dosis de un medicamento y reducción de síntomas. Hay dos pacientes con dosis
+        muy altas (outliers).
+      </p>
+      <ul>
+        <li>Pearson: \( r = 0.35 \) (afectado por los outliers)</li>
+        <li>Spearman: \( \rho = 0.72 \) (más estable)</li>
+      </ul>
+      <p>
+        <strong>Interpretación:</strong> la asociación monótona es fuerte; Pearson subestimaba la relación
+        por la influencia de los valores extremos. En este caso Spearman es preferible.
+      </p>
+    </div>
+
+    <h2>Ejemplo 3: Marketing (relación monótona no lineal)</h2>
+    <div class="card">
+      <p>
+        Inversión en publicidad digital vs número de conversiones. La relación crece de forma
+        cóncava (rendimientos decrecientes).
+      </p>
+      <ul>
+        <li>Pearson: \( r = 0.48 \)</li>
+        <li>Spearman: \( \rho = 0.79 \)</li>
+      </ul>
+      <p>
+        <strong>Interpretación:</strong> existe una asociación monótona fuerte. Spearman captura mejor
+        la tendencia creciente no lineal. Útil para decisiones de presupuesto, aunque no sustituye
+        un modelo de respuesta a la publicidad.
+      </p>
+    </div>
+
+    <h2>Ejemplo 4: Ranking de productos</h2>
+    <div class="card">
+      <p>
+        Dos jueces ordenan 10 productos por calidad percibida. Se calcula Spearman entre los dos rankings.
+      </p>
+      <ul>
+        <li>\( \rho = 0.88 \), \( p &lt; 0.001 \)</li>
+      </ul>
+      <p>
+        <strong>Interpretación:</strong> alta concordancia entre los jueces (asociación monótona muy fuerte).
+        Spearman (o Kendall) es el método natural para comparar rankings.
+      </p>
+    </div>
+
+    <h2>Ejemplo 5: Cuando ambos coinciden</h2>
+    <div class="card success">
+      <p>
+        Datos de estatura y peso en una muestra sin outliers y con relación aproximadamente lineal.
+      </p>
+      <ul>
+        <li>Pearson: \( r = 0.81 \)</li>
+        <li>Spearman: \( \rho = 0.79 \)</li>
+      </ul>
+      <p style="margin-bottom:0;">
+        <strong>Lección:</strong> cuando se cumplen los supuestos de Pearson, ambos coeficientes
+        suelen ser muy parecidos. Reportar ambos refuerza la conclusión.
+      </p>
+    </div>
+
+    <h2>Cómo reportar resultados</h2>
+    <p>Incluye como mínimo:</p>
+    <ol>
+      <li>El valor de \( \rho \) (2 o 3 decimales)</li>
+      <li>El valor p</li>
+      <li>El tamaño de la muestra \( n \)</li>
+      <li>El motivo por el que se usó Spearman (si aplica)</li>
+      <li>Una interpretación clara en el contexto del problema</li>
+    </ol>
+
+    <div class="card success">
+      <strong>Ejemplo de redacción correcta:</strong>
+      <p style="margin-bottom:0; font-style:italic;">
+        «Se encontró una correlación de rangos de Spearman positiva fuerte y estadísticamente significativa
+        entre la inversión publicitaria y las conversiones (\( \rho = 0.79 \), \( p &lt; 0.001 \), \( n = 36 \)).
+        Se optó por Spearman debido a la forma monótona no lineal observada en el diagrama de dispersión.»
+      </p>
+    </div>
+
+    <p style="margin-top:2rem;">
+      <a class="btn btn-outline" href="04-propiedades.html">← Anterior</a>
+      <a class="btn" href="ejercicios/ejercicios-manuales.html">Ir a Ejercicios manuales →</a>
+    </p>
+  </main>
+
+  <footer>
+    <p>Material generado para la asignatura GAD-2401 · Uso educativo</p>
+  </footer>
+</body>
+</html>

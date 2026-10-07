@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.1.2 Coeficiente de Spearman | GAD-2401</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>2.1.2 Coeficiente de Correlación de Spearman (ρ)</h1>
+      <p>Análisis y visualización de datos (GAD-2401) · Ingeniería Informática</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="01-introduccion.html">1. Introducción</a>
+      <a href="02-formula-y-calculo.html">2. Fórmula</a>
+      <a href="03-interpretacion.html">3. Interpretación</a>
+      <a href="04-propiedades.html">4. Propiedades</a>
+      <a href="05-ejemplos.html">5. Ejemplos</a>
+      <a href="ejercicios/ejercicios-manuales.html">Ejercicios</a>
+    </div>
+  </nav>
+
+  <main>
+    <h2>Bienvenido al módulo</h2>
+    <p>
+      Este material desarrolla el <strong>Coeficiente de correlación de rangos de Spearman</strong> (\( \rho \) o \( r_s \)),
+      una medida <strong>no paramétrica</strong> de la fuerza y dirección de la asociación <strong>monótona</strong>
+      entre dos variables. Es la alternativa robusta al coeficiente de Pearson cuando los datos no cumplen normalidad
+      o presentan valores atípicos.
+    </p>
+
+    <div class="card highlight">
+      <h3 style="margin-top:0;">Objetivos de aprendizaje</h3>
+      <ol>
+        <li>Explicar qué mide el coeficiente de Spearman y en qué se diferencia de Pearson.</li>
+        <li>Calcular \( \rho \) de forma <strong>manual</strong> (con y sin empates) y con software.</li>
+        <li>Interpretar el valor de \( \rho \) y el valor p asociado.</li>
+        <li>Identificar cuándo preferir Spearman frente a Pearson o Kendall.</li>
+        <li>Aplicar el coeficiente a datos reales y comunicar los resultados correctamente.</li>
+      </ol>
+    </div>
+
+    <h2>Contenido del módulo</h2>
+    <div class="grid">
+      <div class="card">
+        <h4><a href="01-introduccion.html">1. Introducción</a></h4>
+        <p>Concepto, idea de rangos, diferencias con Pearson y cuándo usarlo.</p>
+      </div>
+      <div class="card">
+        <h4><a href="02-formula-y-calculo.html">2. Fórmula y cálculo</a></h4>
+        <p>Fórmulas (sin empates y con empates), procedimiento paso a paso y ejemplo numérico.</p>
+      </div>
+      <div class="card">
+        <h4><a href="03-interpretacion.html">3. Interpretación y supuestos</a></h4>
+        <p>Cómo interpretar \( \rho \), valor p y supuestos (más flexibles que Pearson).</p>
+      </div>
+      <div class="card">
+        <h4><a href="04-propiedades.html">4. Propiedades y limitaciones</a></h4>
+        <p>Propiedades, robustez ante outliers y comparación con Pearson y Kendall.</p>
+      </div>
+      <div class="card">
+        <h4><a href="05-ejemplos.html">5. Ejemplos aplicados</a></h4>
+        <p>Casos en educación, salud, marketing y cuando Pearson falla.</p>
+      </div>
+      <div class="card">
+        <h4><a href="ejercicios/ejercicios-manuales.html">Ejercicios manuales</a></h4>
+        <p>Ejercicios para resolver a mano en cuaderno (sin calculadora ni código).</p>
+      </div>
+    </div>
+
+    <h2>Práctica en Jupyter Notebook</h2>
+    <div class="card success">
+      <p>
+        El notebook incluye cálculo paso a paso, comparación con Pearson, efecto de outliers
+        y aplicación a un dataset real.
+      </p>
+      <a class="btn" href="practica/practica_spearman.ipynb" download>Descargar practica_spearman.ipynb</a>
+      <p style="margin-top:1rem; font-size:0.9rem; color:var(--text-light);">
+        Ábrelo en <strong>Google Colab</strong>:
+        <a href="https://colab.research.google.com" target="_blank">colab.research.google.com</a>
+      </p>
+    </div>
+
+    <h2>Cómo usar este material</h2>
+    <ol>
+      <li>Lee las páginas de teoría <strong>en orden</strong> (1 → 5).</li>
+      <li>Resuelve primero los <strong>ejercicios manuales</strong> en tu cuaderno.</li>
+      <li>Abre el notebook de práctica y verifica tus resultados.</li>
+      <li>Completa los ejercicios adicionales del notebook.</li>
+    </ol>
+
+    <div class="nota">
+      <strong>Requisitos previos:</strong> Haber estudiado el coeficiente de Pearson (2.1.1).
+      Conceptos de media, rangos y correlación lineal.
+    </div>
+  </main>
+
+  <footer>
+    <p>Material generado para la asignatura GAD-2401 · Tecnológico de Estudios Superiores de Chalco · 2026</p>
+    <p>Uso educativo</p>
+  </footer>
+</body>
+</html>

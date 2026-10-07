@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3. Interpretación | Coeficiente de Spearman</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>2.1.2 Coeficiente de Spearman (ρ)</h1>
+      <p>3. Interpretación y supuestos</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <a href="index.html">Inicio</a>
+      <a href="01-introduccion.html">1. Introducción</a>
+      <a href="02-formula-y-calculo.html">2. Fórmula</a>
+      <a href="03-interpretacion.html" class="active">3. Interpretación</a>
+      <a href="04-propiedades.html">4. Propiedades</a>
+      <a href="05-ejemplos.html">5. Ejemplos</a>
+      <a href="ejercicios/ejercicios-manuales.html">Ejercicios</a>
+    </div>
+  </nav>
+
+  <main>
+    <h2>Interpretación del valor de \( \rho \)</h2>
+    <p>Al igual que Pearson, se interpreta en <strong>dirección</strong> y <strong>fuerza</strong>.</p>
+
+    <h3>Dirección</h3>
+    <ul>
+      <li><strong>Positiva (\( \rho &gt; 0 \)):</strong> cuando una variable aumenta, la otra tiende a aumentar (de forma monótona).</li>
+      <li><strong>Negativa (\( \rho &lt; 0 \)):</strong> cuando una aumenta, la otra tiende a disminuir.</li>
+      <li><strong>Cercana a cero:</strong> no hay tendencia monótona clara.</li>
+    </ul>
+
+    <h3>Fuerza (guía orientativa)</h3>
+    <table>
+      <thead>
+        <tr><th>Rango de \( |\rho| \)</th><th>Interpretación habitual</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>0.00 – 0.10</td><td>Nula o casi nula</td></tr>
+        <tr><td>0.10 – 0.30</td><td>Débil</td></tr>
+        <tr><td>0.30 – 0.50</td><td>Moderada</td></tr>
+        <tr><td>0.50 – 0.70</td><td>Fuerte</td></tr>
+        <tr><td>0.70 – 0.90</td><td>Muy fuerte</td></tr>
+        <tr><td>0.90 – 1.00</td><td>Casi perfecta / Perfecta</td></tr>
+      </tbody>
+    </table>
+    <div class="nota">
+      Las mismas categorías orientativas de Pearson se aplican a Spearman.
+      El contexto del problema siempre debe guiar la interpretación práctica.
+    </div>
+
+    <h2>El valor p</h2>
+    <p>Hipótesis habituales:</p>
+    <ul>
+      <li><strong>H₀:</strong> \( \rho = 0 \) (no hay asociación monótona en la población)</li>
+      <li><strong>H₁:</strong> \( \rho \neq 0 \) (existe asociación monótona)</li>
+    </ul>
+    <div class="card highlight">
+      Si <strong>p &lt; 0.05</strong> → se rechaza H₀ → la correlación de rangos es estadísticamente significativa.<br>
+      Si <strong>p ≥ 0.05</strong> → no hay evidencia suficiente de asociación monótona.
+    </div>
+    <p>
+      <strong>Siempre reporta:</strong> el valor de \( \rho \), el valor p y el tamaño de la muestra \( n \).
+    </p>
+
+    <h2>Supuestos de Spearman</h2>
+    <p>Son <strong>más flexibles</strong> que los de Pearson:</p>
+    <ol>
+      <li><strong>Relación monótona</strong> (no necesariamente lineal). Verificar con diagrama de dispersión.</li>
+      <li><strong>Variables al menos ordinales</strong> (o cuantitativas convertidas a rangos).</li>
+      <li><strong>Observaciones independientes</strong>.</li>
+      <li><strong>Empates:</strong> se permiten; se manejan con rangos promedio (el software lo hace automáticamente).</li>
+    </ol>
+    <p>
+      <strong>No se exige</strong> normalidad ni homocedasticidad estricta. Por eso es no paramétrico y más robusto.
+    </p>
+
+    <h2>Pearson vs Spearman en la práctica</h2>
+    <table>
+      <thead>
+        <tr><th>Situación</th><th>Qué esperar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Relación lineal clara, sin outliers</td><td>\( r \) y \( \rho \) muy similares</td></tr>
+        <tr><td>Relación monótona curva</td><td>\( \rho \) suele ser mayor que \( |r| \)</td></tr>
+        <tr><td>Presencia de outliers</td><td>\( \rho \) más estable; \( r \) puede distorsionarse</td></tr>
+        <tr><td>Datos ordinales</td><td>Usar Spearman (o Kendall)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Buenas prácticas de interpretación</h2>
+    <ol>
+      <li>Siempre <strong>visualiza</strong> (scatter plot) antes de interpretar.</li>
+      <li>Reporta \( \rho \), p-valor y \( n \).</li>
+      <li>Indica si usaste Spearman por no normalidad, outliers o variables ordinales.</li>
+      <li>No afirmes causalidad.</li>
+      <li>Si es posible, reporta también Pearson y comenta las diferencias.</li>
+    </ol>
+
+    <p style="margin-top:2rem;">
+      <a class="btn btn-outline" href="02-formula-y-calculo.html">← Anterior</a>
+      <a class="btn" href="04-propiedades.html">Siguiente: Propiedades →</a>
+    </p>
+  </main>
+
+  <footer>
+    <p>Material generado para la asignatura GAD-2401 · Uso educativo</p>
+  </footer>
+</body>
+</html>

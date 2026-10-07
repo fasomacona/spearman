@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2. Fórmula y cálculo | Coeficiente de Spearman</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>2.1.2 Coeficiente de Spearman (ρ)</h1>
+      <p>2. Fórmula y cálculo</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <a href="index.html">Inicio</a>
+      <a href="01-introduccion.html">1. Introducción</a>
+      <a href="02-formula-y-calculo.html" class="active">2. Fórmula</a>
+      <a href="03-interpretacion.html">3. Interpretación</a>
+      <a href="04-propiedades.html">4. Propiedades</a>
+      <a href="05-ejemplos.html">5. Ejemplos</a>
+      <a href="ejercicios/ejercicios-manuales.html">Ejercicios</a>
+    </div>
+  </nav>
+
+  <main>
+    <h2>Fórmula cuando no hay empates</h2>
+    <p>
+      Si no hay valores repetidos (empates) en ninguna de las dos variables, se usa la fórmula clásica
+      basada en las diferencias de rangos:
+    </p>
+    <div class="math-block">
+      $$ \rho = 1 - \dfrac{6 \sum d_i^{2}}{n(n^{2} - 1)} $$
+    </div>
+    <p>Donde:</p>
+    <ul>
+      <li>\( d_i = R(x_i) - R(y_i) \) = diferencia entre el rango de \( x_i \) y el rango de \( y_i \)</li>
+      <li>\( n \) = número de pares de observaciones</li>
+    </ul>
+
+    <h2>Fórmula general (con o sin empates)</h2>
+    <p>
+      La forma más general es calcular el coeficiente de Pearson sobre los rangos:
+    </p>
+    <div class="math-block">
+      $$ \rho = \dfrac{\sum (R_x - \bar{R}_x)(R_y - \bar{R}_y)}{\sqrt{\sum (R_x - \bar{R}_x)^{2} \cdot \sum (R_y - \bar{R}_y)^{2}}} $$
+    </div>
+    <p>
+      En software (Python, R, Excel) esta es la que se implementa por defecto y maneja automáticamente
+      los empates asignando el <strong>rango promedio</strong>.
+    </p>
+
+    <h2>Cómo asignar rangos (con empates)</h2>
+    <p>
+      Si hay valores iguales, se les asigna el <strong>promedio de las posiciones</strong> que ocuparían.
+    </p>
+    <div class="card highlight">
+      <p><strong>Ejemplo:</strong> datos ordenados: 3, 5, 5, 8</p>
+      <ul style="margin-bottom:0;">
+        <li>3 → rango 1</li>
+        <li>Los dos 5 ocupan las posiciones 2 y 3 → rango promedio \( (2+3)/2 = 2.5 \) cada uno</li>
+        <li>8 → rango 4</li>
+      </ul>
+    </div>
+
+    <h2>Procedimiento paso a paso (cálculo manual sin empates)</h2>
+    <ol>
+      <li>Ordenar los valores de \( X \) y asignar rangos \( R_x \) (1 al menor, \( n \) al mayor).</li>
+      <li>Ordenar los valores de \( Y \) y asignar rangos \( R_y \).</li>
+      <li>Para cada par, calcular \( d_i = R_x - R_y \) y luego \( d_i^{2} \).</li>
+      <li>Sumar todos los \( d_i^{2} \): \( \sum d_i^{2} \).</li>
+      <li>Sustituir en la fórmula: \( \rho = 1 - \dfrac{6 \sum d_i^{2}}{n(n^{2}-1)} \).</li>
+      <li>Redondear a 4 decimales e interpretar.</li>
+    </ol>
+
+    <h2>Ejemplo numérico completo (sin empates)</h2>
+    <p>Cinco estudiantes: horas de estudio (\( x \)) y calificación (\( y \)):</p>
+    <table>
+      <thead>
+        <tr><th>Estudiante</th><th>\( x \)</th><th>\( y \)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A</td><td>2</td><td>65</td></tr>
+        <tr><td>B</td><td>3</td><td>70</td></tr>
+        <tr><td>C</td><td>5</td><td>80</td></tr>
+        <tr><td>D</td><td>6</td><td>85</td></tr>
+        <tr><td>E</td><td>8</td><td>95</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Paso 1–2: Asignar rangos</h3>
+    <table>
+      <thead>
+        <tr><th>\( x \)</th><th>\( R_x \)</th><th>\( y \)</th><th>\( R_y \)</th><th>\( d = R_x - R_y \)</th><th>\( d^{2} \)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2</td><td>1</td><td>65</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>3</td><td>2</td><td>70</td><td>2</td><td>0</td><td>0</td></tr>
+        <tr><td>5</td><td>3</td><td>80</td><td>3</td><td>0</td><td>0</td></tr>
+        <tr><td>6</td><td>4</td><td>85</td><td>4</td><td>0</td><td>0</td></tr>
+        <tr><td>8</td><td>5</td><td>95</td><td>5</td><td>0</td><td>0</td></tr>
+        <tr><td colspan="5" style="text-align:right;"><strong>Σ d²</strong></td><td><strong>0</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Paso 3: Aplicar la fórmula</h3>
+    <div class="math-block">
+      $$ \rho = 1 - \dfrac{6 \times 0}{5(25 - 1)} = 1 - 0 = 1 $$
+    </div>
+    <div class="card success">
+      <strong>Resultado:</strong> \( \rho = 1 \)<br>
+      Asociación monótona positiva perfecta (los rangos coinciden exactamente).
+    </div>
+
+    <h2>Ejemplo con diferencias de rangos</h2>
+    <p>Datos distintos (relación no perfecta):</p>
+    <table>
+      <thead>
+        <tr><th>\( x \)</th><th>\( R_x \)</th><th>\( y \)</th><th>\( R_y \)</th><th>\( d \)</th><th>\( d^{2} \)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>10</td><td>1</td><td>8</td><td>2</td><td>−1</td><td>1</td></tr>
+        <tr><td>12</td><td>2</td><td>6</td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td>15</td><td>3</td><td>15</td><td>4</td><td>−1</td><td>1</td></tr>
+        <tr><td>18</td><td>4</td><td>12</td><td>3</td><td>1</td><td>1</td></tr>
+        <tr><td>20</td><td>5</td><td>20</td><td>5</td><td>0</td><td>0</td></tr>
+        <tr><td colspan="5" style="text-align:right;"><strong>Σ d²</strong></td><td><strong>4</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="math-block">
+      $$ \rho = 1 - \dfrac{6 \times 4}{5(25-1)} = 1 - \dfrac{24}{120} = 1 - 0.2 = 0.8 $$
+    </div>
+    <p><strong>Interpretación:</strong> asociación monótona positiva fuerte (\( \rho = 0.8 \)).</p>
+
+    <div class="nota">
+      <strong>Recomendaciones para el cálculo manual:</strong>
+      <ul style="margin-bottom:0;">
+        <li>Verifica que la suma de rangos de cada variable sea \( \dfrac{n(n+1)}{2} \).</li>
+        <li>Si hay empates, usa rangos promedio y, idealmente, la fórmula de Pearson sobre rangos.</li>
+        <li>En los ejercicios de cuaderno usaremos la fórmula con \( \sum d_i^{2} \) (sin empates o con empates simples).</li>
+      </ul>
+    </div>
+
+    <p style="margin-top:2rem;">
+      <a class="btn btn-outline" href="01-introduccion.html">← Anterior</a>
+      <a class="btn" href="03-interpretacion.html">Siguiente: Interpretación →</a>
+    </p>
+  </main>
+
+  <footer>
+    <p>Material generado para la asignatura GAD-2401 · Uso educativo</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1. Introducción | Coeficiente de Spearman</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>2.1.2 Coeficiente de Spearman (ρ)</h1>
+      <p>1. Introducción</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <a href="index.html">Inicio</a>
+      <a href="01-introduccion.html" class="active">1. Introducción</a>
+      <a href="02-formula-y-calculo.html">2. Fórmula</a>
+      <a href="03-interpretacion.html">3. Interpretación</a>
+      <a href="04-propiedades.html">4. Propiedades</a>
+      <a href="05-ejemplos.html">5. Ejemplos</a>
+      <a href="ejercicios/ejercicios-manuales.html">Ejercicios</a>
+    </div>
+  </nav>
+
+  <main>
+    <h2>¿Qué es el coeficiente de Spearman?</h2>
+    <p>
+      El <strong>coeficiente de correlación de rangos de Spearman</strong> (denotado \( \rho \) o \( r_s \))
+      mide la fuerza y dirección de la asociación <strong>monótona</strong> entre dos variables.
+      Se basa en los <strong>rangos</strong> de los datos, no en sus valores originales.
+    </p>
+    <p>
+      Fue propuesto por el psicólogo inglés <strong>Charles Spearman</strong> en 1904.
+    </p>
+
+    <h3>Rango de valores</h3>
+    <div class="math-block">
+      $$ -1 \leq \rho \leq +1 $$
+    </div>
+    <table>
+      <thead>
+        <tr><th>Valor de \( \rho \)</th><th>Interpretación</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>\( \rho = +1 \)</td><td>Asociación monótona positiva perfecta</td></tr>
+        <tr><td>\( \rho = -1 \)</td><td>Asociación monótona negativa perfecta</td></tr>
+        <tr><td>\( \rho = 0 \)</td><td>No hay asociación monótona detectable</td></tr>
+        <tr><td>\( 0 &lt; \rho &lt; 1 \)</td><td>Asociación positiva de distinta fuerza</td></tr>
+        <tr><td>\( -1 &lt; \rho &lt; 0 \)</td><td>Asociación negativa de distinta fuerza</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Idea central: trabajar con rangos</h2>
+    <p>
+      En lugar de usar los valores originales \( x_i \) e \( y_i \), se asigna a cada observación
+      su <strong>posición ordenada</strong> (rango):
+    </p>
+    <ul>
+      <li>El valor más pequeño recibe rango 1.</li>
+      <li>El siguiente, rango 2.</li>
+      <li>Y así sucesivamente hasta \( n \).</li>
+    </ul>
+    <p>
+      Luego se calcula la correlación de Pearson <em>sobre esos rangos</em>.
+      Por eso Spearman detecta relaciones <strong>monótonas</strong> (siempre crecientes o siempre decrecientes),
+      aunque no sean estrictamente lineales.
+    </p>
+
+    <div class="card highlight">
+      <h3 style="margin-top:0;">Relación monótona vs lineal</h3>
+      <ul style="margin-bottom:0;">
+        <li><strong>Lineal:</strong> la relación sigue aproximadamente una recta (Pearson).</li>
+        <li><strong>Monótona:</strong> cuando una variable sube, la otra siempre sube (o siempre baja),
+          aunque la forma sea curva (Spearman).</li>
+      </ul>
+    </div>
+
+    <h2>¿En qué se diferencia de Pearson?</h2>
+    <table>
+      <thead>
+        <tr><th>Aspecto</th><th>Pearson (\( r \))</th><th>Spearman (\( \rho \))</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tipo de relación</td><td>Lineal</td><td>Monótona</td></tr>
+        <tr><td>Datos que usa</td><td>Valores originales</td><td>Rangos</td></tr>
+        <tr><td>Paramétrico</td><td>Sí</td><td>No (no paramétrico)</td></tr>
+        <tr><td>Normalidad</td><td>Deseable</td><td>No requiere</td></tr>
+        <tr><td>Sensibilidad a outliers</td><td>Alta</td><td>Baja (robusto)</td></tr>
+        <tr><td>Variables</td><td>Cuantitativas</td><td>Cuantitativas u ordinales</td></tr>
+      </tbody>
+    </table>
+
+    <h2>¿Cuándo usar Spearman?</h2>
+    <ul>
+      <li>Los datos <strong>no son normales</strong> o hay dudas sobre la distribución.</li>
+      <li>Hay <strong>valores atípicos</strong> que distorsionan Pearson.</li>
+      <li>La relación parece <strong>monótona pero no lineal</strong> (por ejemplo, logarítmica).</li>
+      <li>Una o ambas variables son <strong>ordinales</strong> (escalas Likert, rankings, etc.).</li>
+      <li>Quieres una medida más <strong>robusta</strong> como complemento o alternativa a Pearson.</li>
+    </ul>
+
+    <div class="card warning">
+      <h3 style="margin-top:0;">Correlación ≠ causalidad</h3>
+      <p style="margin-bottom:0;">
+        Al igual que Pearson, Spearman mide <strong>asociación</strong>, no causa-efecto.
+        Una \( \rho \) alta no implica que una variable cause a la otra.
+      </p>
+    </div>
+
+    <div class="nota">
+      <strong>Resumen:</strong> Spearman es la versión basada en rangos de la correlación.
+      Detecta asociaciones monótonas, es robusto ante outliers y no exige normalidad.
+      Es la primera alternativa a considerar cuando Pearson no es adecuado.
+    </div>
+
+    <p style="margin-top:2rem;">
+      <a class="btn" href="02-formula-y-calculo.html">Siguiente: Fórmula y cálculo →</a>
+    </p>
+  </main>
+
+  <footer>
+    <p>Material generado para la asignatura GAD-2401 · Uso educativo</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4. Propiedades y limitaciones | Coeficiente de Spearman</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>2.1.2 Coeficiente de Spearman (ρ)</h1>
+      <p>4. Propiedades y limitaciones</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <a href="index.html">Inicio</a>
+      <a href="01-introduccion.html">1. Introducción</a>
+      <a href="02-formula-y-calculo.html">2. Fórmula</a>
+      <a href="03-interpretacion.html">3. Interpretación</a>
+      <a href="04-propiedades.html" class="active">4. Propiedades</a>
+      <a href="05-ejemplos.html">5. Ejemplos</a>
+      <a href="ejercicios/ejercicios-manuales.html">Ejercicios</a>
+    </div>
+  </nav>
+
+  <main>
+    <h2>Propiedades importantes</h2>
+    <ol>
+      <li><strong>Simetría:</strong> \( \rho_{xy} = \rho_{yx} \).</li>
+      <li><strong>Rango acotado:</strong> \( -1 \leq \rho \leq 1 \).</li>
+      <li><strong>Invarianza ante transformaciones monótonas:</strong> si se aplica una función monótona creciente a una o ambas variables (por ejemplo logaritmo, raíz), el valor de \( \rho \) no cambia.</li>
+      <li><strong>Basado en rangos:</strong> solo depende del orden de los datos, no de las magnitudes exactas.</li>
+      <li><strong>Robusto ante outliers:</strong> un valor extremo cambia poco los rangos del resto, por lo que \( \rho \) se altera menos que \( r \).</li>
+    </ol>
+
+    <h2>Fortalezas</h2>
+    <ul>
+      <li>No requiere normalidad.</li>
+      <li>Funciona con variables ordinales.</li>
+      <li>Detecta relaciones monótonas no lineales.</li>
+      <li>Más resistente a valores atípicos que Pearson.</li>
+      <li>Fácil de calcular e interpretar (misma escala −1 a +1).</li>
+    </ul>
+
+    <h2>Limitaciones</h2>
+    <div class="card warning">
+      <h3 style="margin-top:0;">1. Solo detecta asociaciones monótonas</h3>
+      <p style="margin-bottom:0;">
+        Si la relación tiene forma de U o de S no monótona, \( \rho \) puede ser bajo aunque exista dependencia.
+        Siempre graficar.
+      </p>
+    </div>
+    <div class="card warning">
+      <h3 style="margin-top:0;">2. Pérdida de información</h3>
+      <p style="margin-bottom:0;">
+        Al convertir a rangos se pierde la información sobre las distancias entre valores.
+        Si la relación es claramente lineal y sin outliers, Pearson puede ser más eficiente.
+      </p>
+    </div>
+    <div class="card warning">
+      <h3 style="margin-top:0;">3. Empates</h3>
+      <p style="margin-bottom:0;">
+        Muchos empates reducen la capacidad de discriminación. En ese caso, Kendall a veces se prefiere.
+      </p>
+    </div>
+    <ul>
+      <li>No implica causalidad (igual que Pearson).</li>
+      <li>La significación depende del tamaño muestral (muestras grandes hacen significativos valores pequeños de \( \rho \)).</li>
+    </ul>
+
+    <h2>Comparación rápida: Pearson, Spearman y Kendall</h2>
+    <table>
+      <thead>
+        <tr><th>Aspecto</th><th>Pearson</th><th>Spearman</th><th>Kendall</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tipo de relación</td><td>Lineal</td><td>Monótona</td><td>Monótona</td></tr>
+        <tr><td>Paramétrico</td><td>Sí</td><td>No</td><td>No</td></tr>
+        <tr><td>Robustez a outliers</td><td>Baja</td><td>Alta</td><td>Alta</td></tr>
+        <tr><td>Muestras pequeñas</td><td>—</td><td>Bien</td><td>Muy bien</td></tr>
+        <tr><td>Muchos empates</td><td>—</td><td>Aceptable</td><td>Preferible</td></tr>
+        <tr><td>Interpretación</td><td>Muy intuitiva</td><td>Intuitiva</td><td>Un poco menos directa</td></tr>
+      </tbody>
+    </table>
+
+    <h2>¿Cuándo preferir Spearman?</h2>
+    <table>
+      <thead>
+        <tr><th>Situación</th><th>Recomendación</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Datos normales, relación lineal, sin outliers</td><td>Pearson</td></tr>
+        <tr><td>Outliers o no normalidad</td><td>Spearman (o Kendall)</td></tr>
+        <tr><td>Relación monótona no lineal</td><td>Spearman</td></tr>
+        <tr><td>Variables ordinales</td><td>Spearman o Kendall</td></tr>
+        <tr><td>Muestra muy pequeña o muchos empates</td><td>Kendall</td></tr>
+      </tbody>
+    </table>
+
+    <div class="nota">
+      <strong>Conclusión:</strong> Spearman es la herramienta de referencia cuando se necesita una correlación
+      robusta y no paramétrica. No reemplaza a Pearson en todos los casos, pero es el complemento
+      (y a menudo la mejor opción) en análisis exploratorio real.
+    </div>
+
+    <p style="margin-top:2rem;">
+      <a class="btn btn-outline" href="03-interpretacion.html">← Anterior</a>
+      <a class="btn" href="05-ejemplos.html">Siguiente: Ejemplos →</a>
+    </p>
+  </main>
+
+  <footer>
+    <p>Material generado para la asignatura GAD-2401 · Uso educativo</p>
+  </footer>
+</body>
+</html>
